@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Kitchen Orders</title>
+  <script>
+    // reload page every 30 seconds
+    spiralburger_refresh = window.setTimeout(function () {
+      window.location.reload(true);
+    }, 30 * 1000);
+    // toggle background every 5 seconds
+    window.setInterval(function () {
+      var pageBody = document.body;
+      pageBody.style.backgroundColor =
+          pageBody.style.backgroundColor === "yellow" ? "pink" : "yellow";
+    }, 5 * 1000);
+  </script>
+</head>
+<body>
+<h1>Last Order updated on <span th:text="${#execInfo.now.time}">Now Time</span></h1>
+<!--<span th:text="${#dates.createNowForTimeZone()}"-->
+</body>
+</html>

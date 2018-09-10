@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '1.5.14.RELEASE'
+        springBootVersion = '1.5.15.RELEASE'
     }
     repositories {
         mavenCentral()
@@ -17,22 +17,38 @@ group = 'com.welltestedlearning'
 version = '1.0.0'
 sourceCompatibility = 1.8
 
+//---- Override versions inherited from the parent Spring Boot project
+
+// by default, Spring Boot 1.5.x uses Thymeleaf 2.1.6, so force it to 3.0 latest (3.0.9)
+ext."thymeleaf.version" = "3.0.9.RELEASE"
+ext."thymeleaf-extras-java8time.version" = "3.0.1.RELEASE"
+// also, default layout dialect is 1.4.0, but we want 2.3.0 for Thymeleaf 3
+ext."thymeleaf-layout-dialect.version" = "2.3.0"
+// Use latest Thymeleaf security, too
+ext."thymeleaf-extras-springsecurity4.version" = "3.0.2.RELEASE"
+
+// default is AssertJ 2.6.0, we want Java 8 compatible 3.x latest
+ext."assertj.version" = "3.11.0"
+
+// mockito.version=2.21.0
+//rest-assured.version=3.1.1
 repositories {
 	mavenCentral()
 }
 
 
 dependencies {
-    compile('org.springframework.boot:spring-boot-starter-security')
-    compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+//    compile('org.springframework.boot:spring-boot-starter-security')
+//    testCompile('org.springframework.security:spring-security-test')
+
     compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+
+    runtime('org.springframework.boot:spring-boot-actuator')
 
     runtime('org.springframework.boot:spring-boot-devtools')
 
     compileOnly('org.projectlombok:lombok')
 
     testCompile('org.springframework.boot:spring-boot-starter-test')
-    testCompile('org.springframework.security:spring-security-test')
-    testCompile 'junit:junit:4.12'
-    testCompile 'org.assertj:assertj-core:3.9.1'
 }
