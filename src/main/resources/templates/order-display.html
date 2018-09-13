@@ -140,7 +140,7 @@
     <div class="card-content">
       <p class="category category__01">
         <span th:text="${order.kioskName}">Ted</span>
-        #: <span th:text="${order.orderNumber}"></span>
+        #: <span th:text="${order.kioskId}"></span>
       </p>
       <h2 th:each="item: ${order.orderItems}" th:text="${item}"></h2>
     </div>

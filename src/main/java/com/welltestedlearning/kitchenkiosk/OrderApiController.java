@@ -22,10 +22,10 @@ public class OrderApiController {
   }
 
   @PostMapping("/api/orders")
-  public ResponseEntity<String> receiveOrder(@RequestBody IncomingOrder incomingOrder) {
+  public ResponseEntity<CreatedOrderResponse> receiveOrder(@RequestBody IncomingOrder incomingOrder) {
     Order order = new Order();
     order.setKioskName(incomingOrder.getKioskName());
-    order.setOrderNumber(incomingOrder.getOrderNumber());
+    order.setKioskId(incomingOrder.getKioskId());
     order.setOrderItems(incomingOrder.getItems());
     order.moveToNextState();
 
@@ -33,7 +33,11 @@ public class OrderApiController {
 
     URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().
         path("/{idOfNewResource}").buildAndExpand(savedOrder.getId()).toUri();
-    return ResponseEntity.created(uri).build();
+
+    CreatedOrderResponse createdOrderResponse = new CreatedOrderResponse();
+    createdOrderResponse.setKioskId(order.getKioskId());
+    createdOrderResponse.setOrderNumber(order.getId());
+    return ResponseEntity.created(uri).body(createdOrderResponse);
   }
 
   @GetMapping("/api/orders/{id}")
@@ -43,10 +47,11 @@ public class OrderApiController {
       return ResponseEntity.notFound().build();
     }
     foundOrder.moveToNextState();
+    orderRepository.save(foundOrder);
 
     OrderResponse mealOrderResponse = new OrderResponse();
-    mealOrderResponse.setId(foundOrder.getId());
-    mealOrderResponse.setOrderNumber(foundOrder.getOrderNumber());
+    mealOrderResponse.setOrderNumber(foundOrder.getId());
+    mealOrderResponse.setKioskId(foundOrder.getKioskId());
     mealOrderResponse.setStatus(foundOrder.getStatus());
 
     return ResponseEntity.ok(mealOrderResponse);

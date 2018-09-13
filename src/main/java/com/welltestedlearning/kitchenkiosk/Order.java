@@ -3,8 +3,8 @@ package com.welltestedlearning.kitchenkiosk;
 import java.util.List;
 
 public class Order {
-  private Long id;
-  private Long orderNumber; // order ID from external meal kiosk
+  private Long id; // our ID for the Repository
+  private Long kioskId; // order ID from external meal kiosk
   private List<String> orderItems;
   private String status = "NEW";
   private String kioskName;
@@ -17,12 +17,12 @@ public class Order {
     this.id = id;
   }
 
-  public Long getOrderNumber() {
-    return orderNumber;
+  public Long getKioskId() {
+    return kioskId;
   }
 
-  public void setOrderNumber(Long orderNumber) {
-    this.orderNumber = orderNumber;
+  public void setKioskId(Long orderNumber) {
+    this.kioskId = orderNumber;
   }
 
   public String getStatus() {
@@ -52,8 +52,15 @@ public class Order {
       case "COOKING":
         status = "COMPLETED";
         break;
-      default:
+      case "COMPLETED":
         status = "ABANDONED";
+        break;
+      case "ABANDONED":
+        status = "GARBAGE";
+        break;
+      case "GARBAGE":
+      default:
+        status = "NEW";
     }
   }
 

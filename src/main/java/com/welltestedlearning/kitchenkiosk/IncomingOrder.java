@@ -4,7 +4,7 @@ import java.util.List;
 
 public class IncomingOrder {
   private String kioskName;
-  private Long orderNumber;
+  private Long kioskId;
   private List<String> items;
 
   public String getKioskName() {
@@ -15,12 +15,12 @@ public class IncomingOrder {
     this.kioskName = kioskName;
   }
 
-  public Long getOrderNumber() {
-    return orderNumber;
+  public Long getKioskId() {
+    return kioskId;
   }
 
-  public void setOrderNumber(Long orderNumber) {
-    this.orderNumber = orderNumber;
+  public void setKioskId(Long kioskId) {
+    this.kioskId = kioskId;
   }
 
   public List<String> getItems() {
