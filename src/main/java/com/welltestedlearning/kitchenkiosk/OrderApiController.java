@@ -2,6 +2,7 @@ package com.welltestedlearning.kitchenkiosk;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -57,4 +58,9 @@ public class OrderApiController {
     return ResponseEntity.ok(mealOrderResponse);
   }
 
+  @DeleteMapping("/api/orders/{id}")
+  public ResponseEntity delete(@PathVariable("id") Long id) {
+    orderRepository.delete(id);
+    return ResponseEntity.ok().build();
+  }
 }

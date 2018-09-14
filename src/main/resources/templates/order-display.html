@@ -126,7 +126,7 @@
     }
 
     .comments {
-      margin-left: .5rem;
+      margin-left: 2rem;
     }
   </style>
 </head>
@@ -140,13 +140,14 @@
     <div class="card-content">
       <p class="category category__01">
         <span th:text="${order.kioskName}">Ted</span>
-        #: <span th:text="${order.kioskId}"></span>
+        #: <span th:text="${order.kioskId}">9</span>
       </p>
       <h2 th:each="item: ${order.orderItems}" th:text="${item}"></h2>
     </div>
     <footer>
       <div class="post-meta">
-        <span class="timestamp"><i class="fa fa-clock-o"></i><span th:text="${order.status}"></span></span>
+        <span class="timestamp"><i class="fa fa-clock-o"></i><span th:text="${order.status}">COOKING</span></span>
+        <span class="comments">[<span th:text="${order.id}">188</span>]</span>
       </div>
     </footer>
   </article>

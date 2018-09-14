@@ -28,4 +28,8 @@ public class OrderRepository {
   List<Order> findAll() {
     return new ArrayList<>(mealOrderMap.values());
   }
+
+  public void delete(Long id) {
+    mealOrderMap.remove(id);
+  }
 }
