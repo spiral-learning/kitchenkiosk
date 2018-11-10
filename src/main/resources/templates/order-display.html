@@ -4,16 +4,16 @@
   <meta charset="UTF-8">
   <title>Kitchen Orders</title>
   <script>
-    // reload page every 30 seconds
+    // reload page every 10 seconds
     spiralburger_refresh = window.setTimeout(function () {
       window.location.reload(true);
-    }, 30 * 1000);
-    // toggle background every 5 seconds
+    }, 10 * 1000);
+    // toggle background every 3 seconds
     window.setInterval(function () {
       var pageBody = document.body;
       pageBody.style.backgroundColor =
           pageBody.style.backgroundColor == "lightyellow" ? "azure" : "lightyellow";
-    }, 5 * 1000);
+    }, 3 * 1000);
   </script>
   <style>
     @import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700');
@@ -33,12 +33,18 @@
       color: orange;
     }
 
+    h1 {
+      margin: 0 0 .1rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+
     h2 {
       color: #000;
       margin: .1rem 0 .5rem;
-      font-size: 1.25rem;
+      font-size: 1rem;
       font-weight: 400;
-      text-transform: uppercase;
+      /*text-transform: uppercase;*/
     }
 
     h3 {
@@ -52,7 +58,7 @@
 
     .cards {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
       grid-auto-rows: minmax(200px, auto);
       grid-gap: 1rem;
     }
@@ -138,11 +144,11 @@
 
   <article class="card" th:each="order: ${orders}">
     <div class="card-content">
-      <p class="category category__01">
+      <p class="category">
         <span th:text="${order.kioskName}">Ted</span>
         #: <span th:text="${order.kioskId}">9</span>
       </p>
-      <h2 th:each="item: ${order.orderItems}" th:text="${item}"></h2>
+      <h2 th:each="item: ${order.orderItems}" th:text="${item}">Brewed Coffee</h2>
     </div>
     <footer>
       <div class="post-meta">
