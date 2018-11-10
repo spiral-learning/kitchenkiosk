@@ -1,3 +1,3 @@
-# Kitchen Order Display Kiosk
+# Kitchen Display System
 
-Displays orders in the kitchen from Meal Order Kiosks.
+Displays orders in the kitchen with orders received from Meal Order Kiosks.
