@@ -63,4 +63,5 @@ public class OrderTest {
     assertThat(order.getStatus())
         .isEqualTo("COMPLETED");
   }
+
 }

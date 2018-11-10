@@ -20,7 +20,8 @@ public class OrderDisplayController {
 
   @GetMapping("/")
   public String orderDisplay(Model model) {
-    List<Order> orders = orderRepository.findAll().stream()
+    List<Order> orders = orderRepository.findAll()
+                                        .stream()
                                         .filter(Order::isNotDone)
                                         .collect(Collectors.toList());
     model.addAttribute("orders", orders);
